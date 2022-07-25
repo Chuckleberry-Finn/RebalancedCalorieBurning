@@ -1,0 +1,1 @@
+---Dummy file created to prevent issues with Steam not being able to delete removed files from player's folders.
