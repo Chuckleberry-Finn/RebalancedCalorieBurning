@@ -2,5 +2,10 @@ version=1
 id=2840487215
 title=Rebalanced Calorie Burning
 description=This mod adds ONTO the base game's calorie burning activities, including but not limited to normal moving around and climbing with added impact of inventory weight. The goal of this mod is to add more calorie burning that is conditional on players' actions. These rates are subject to change and this mod is WIP.
+description=
+description=[img]https://i.imgur.com/p7Fv1Z6.gif[/img]
+description=
+description=[url=https://ko-fi.com/chuckleberryfinn][img]https://i.imgur.com/GxZ38nz.png[/img] [b]Consider supporting Chuck![/b][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/Vanilla-Weapons-Expanded/main/Contents/mods/VanillaWeaponsExpanded/patreon/Patreon%20Logo.png[/img][/url]
+description=
 tags=Build 41;Balance;Realistic
 visibility=public
