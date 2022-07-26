@@ -17,11 +17,14 @@ local function RCB_updateCalories(player)
 
     --thermoModifier
     local thermoModifier = 1
-    local pBodyDamage = player:getBodyDamage()
-    if pBodyDamage then
-        local pbdThermoregulator = pBodyDamage:getThermoregulator()
-        if pbdThermoregulator then
-            thermoModifier = pbdThermoregulator:getEnergyMultiplier()
+    --the vanilla method ignores thermoregulation for running, lets also add a negate for sprinting
+    if not player:isRunning() and not player:isSprinting() then
+        local pBodyDamage = player:getBodyDamage()
+        if pBodyDamage then
+            local pbdThermoregulator = pBodyDamage:getThermoregulator()
+            if pbdThermoregulator then
+                thermoModifier = pbdThermoregulator:getEnergyMultiplier()
+            end
         end
     end
 
@@ -32,8 +35,8 @@ local function RCB_updateCalories(player)
         baseRate = 8
     end
 
-    if player:isMoving() and player:isRunning() then
-        baseRate = baseRate * (caloriesDecreaseExercise/2)
+    if player:isPlayerMoving() and player:isRunning() then
+        baseRate = baseRate * caloriesDecreaseExercise
     elseif player:isAsleep() then
         baseRate = baseRate * calorieDecreaseSleeping
     else
@@ -41,12 +44,16 @@ local function RCB_updateCalories(player)
     end
 
     ---Recreated Vanilla Base Rate
-    baseRate = baseRate * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
     local vanillaBaseRate = baseRate
 
-    --is moving but NOT running
-    if player:isMoving() and not player:isRunning() then
-        baseRate = baseRate * (caloriesDecreaseExercise/2)
+    if player:isPlayerMoving() then
+        --undo baseline calorieDecreaseNormal if player is moving
+        baseRate = baseRate / calorieDecreaseNormal
+        if player:isSprinting() then
+            baseRate = baseRate * (caloriesDecreaseExercise*2)
+        elseif not player:isRunning() then
+            baseRate = baseRate * (caloriesDecreaseExercise/2)
+        end
     end
 
     --inventory impact, but only if over capacity
@@ -56,7 +63,11 @@ local function RCB_updateCalories(player)
     ---Compensate for baseline calorie burn
     baseRate = math.abs(vanillaBaseRate-baseRate)
 
-    pNutrition:setCalories(pNutrition:getCalories()-baseRate)
+    if baseRate > 0 then
+        baseRate = baseRate * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
+        pNutrition:setCalories(pNutrition:getCalories()-baseRate)
+    end
+
     return baseRate
 end
 
