@@ -3,11 +3,10 @@ id=2840487215
 title=Rebalanced Calorie Burning
 description=This mod adds ONTO the base game's calorie burning activities. The goal of this mod is to add more calorie burning that is conditional on players' actions. These rates are subject to change and this mod is WIP.
 description=
-description=Current added activities include: [i]walking[/i], [i]sprinting[/i], as well as [i]factoring in overloaded inventory weight[/i].
+description=Current added activities include: [i]walking[/i], [i]sprinting[/i], [i]sitting[/i], all while [i]factoring in inventory weight[/i].
 description=
 description=[img]https://i.imgur.com/p7Fv1Z6.gif[/img]
 description=
 description=[url=https://ko-fi.com/chuckleberryfinn][img]https://i.imgur.com/GxZ38nz.png[/img] [b]Consider supporting Chuck![/b][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/Vanilla-Weapons-Expanded/main/Contents/mods/VanillaWeaponsExpanded/patreon/Patreon%20Logo.png[/img][/url]
-description=
 tags=Build 41;Balance;Realistic
 visibility=public
