@@ -1,7 +1,9 @@
 version=1
 id=2840487215
 title=Rebalanced Calorie Burning
-description=This mod adds ONTO the base game's calorie burning activities. The goal of this mod is to add more calorie burning that is conditional on players' actions. These rates are subject to change and this mod is WIP.
+description=[h3][b]Add more calorie burning conditional on players' actions.[/b][/h3]
+description=
+description=This mod adds ONTO the base game's calorie burning activities and tries to correct what are oversights. Specifically the fact running (jogging) is the only movement that burns more calories; walking/idling/sprinting all burns the same rate. Additionally, I want to make more grounded effects, like carrying heavy items for a while should burn more calories as well. These rates are subject to change and this mod is WIP.
 description=
 description=Current added activities include: [i]walking[/i], [i]sprinting[/i], [i]sitting[/i], all while [i]factoring in inventory weight[/i].
 description=
