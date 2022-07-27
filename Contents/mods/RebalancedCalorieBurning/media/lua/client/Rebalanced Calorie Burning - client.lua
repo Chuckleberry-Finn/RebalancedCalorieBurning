@@ -93,6 +93,11 @@ local function RCB_updateCalories(player)
     local inventoryModifier = 1+(PZMath.clamp_01(player:getInventoryWeight() / player:getMaxWeight())*0.1)
     baseRate = baseRate / inventoryModifier
 
+    ---Apply sandbox option
+    if SandboxVars.RebalancedCalorieBurning.multiplier then
+        baseRate = baseRate * SandboxVars.RebalancedCalorieBurning.multiplier
+    end
+    
     ---Compensate for baseline caloric burn
     baseRate = math.abs(vanillaBaseRate-baseRate)
 

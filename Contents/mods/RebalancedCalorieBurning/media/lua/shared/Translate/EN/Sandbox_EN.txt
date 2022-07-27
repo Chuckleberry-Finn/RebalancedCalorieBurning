@@ -1,0 +1,3 @@
+Sandbox_EN = {
+	Sandbox_RCBmultiplier = "Caloric Burn Rate Multiplier",
+	Sandbox_RCBmultiplier_tooltip = "Multiply this off the overall caloric burn rate.",
