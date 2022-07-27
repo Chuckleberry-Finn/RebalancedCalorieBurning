@@ -97,11 +97,11 @@ local function RCB_updateCalories(player)
     if SandboxVars.RebalancedCalorieBurning.multiplier then
         baseRate = baseRate * SandboxVars.RebalancedCalorieBurning.multiplier
     end
-    
-    ---Compensate for baseline caloric burn
-    baseRate = math.abs(vanillaBaseRate-baseRate)
 
-    if baseRate > 0 then
+    ---Compensate for baseline caloric burn
+    baseRate = (baseRate-vanillaBaseRate)
+
+    if baseRate ~= 0 then
 
         if getDebug() and (debugChecks.state~=debugChecks.lastState ) then
             print("Rebalanced Calorie Burning: ["..debugChecks.state.."]  added-burn:"..baseRate)
