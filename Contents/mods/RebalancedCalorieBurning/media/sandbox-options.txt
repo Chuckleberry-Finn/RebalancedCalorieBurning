@@ -1,0 +1,4 @@
+VERSION = 1,
+
+option RebalancedCalorieBurning.CalorieMultiplier
+{type = double, min = 0, max = 100, default = 1, page = Character, translation = CalorieMultiplier}

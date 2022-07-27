@@ -1,4 +1,0 @@
-VERSION = 1,
-
-option RebalancedCalorieBurning.multiplier
-{type = double, min = 0, max = 100, default = 1, page = Character, translation = RCBmultiplier}
