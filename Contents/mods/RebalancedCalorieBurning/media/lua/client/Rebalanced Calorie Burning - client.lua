@@ -1,10 +1,19 @@
 ---values and methods taken from `zombie\characters\BodyDamage\Nutrition.java`
 
-local caloriesDecreaseExercise = 0.13 --as per vanilla
-local calorieDecreaseSleeping = 0.003
-local calorieDecreaseNormal = 0.016
+---Values from vanilla (41.73)
+local caloriesDecrease = {}
+caloriesDecrease.Exercise = 0.13
+caloriesDecrease.Sleeping = 0.003
+caloriesDecrease.Normal = 0.016
+---additional rates
+caloriesDecrease.Sprinting = caloriesDecrease.Exercise*2
+caloriesDecrease.Walking = caloriesDecrease.Exercise/2
+caloriesDecrease.Sitting = caloriesDecrease.Normal*0.66
 
+
+---used for debug checks that don't spam the log
 local debugChecks = {state = "", lastState = "", vanillaRateOffsetError = false}
+
 
 ---@param player IsoPlayer|IsoGameCharacter
 local function RCB_updateCalories(player)
@@ -35,12 +44,12 @@ local function RCB_updateCalories(player)
         baseRate = 8
     end
 
-    local appliedCaloriesDecrease = calorieDecreaseNormal
+    local appliedCaloriesDecrease = caloriesDecrease.Normal
     if player:isPlayerMoving() and player:isRunning() then
         thermoModifier = 1
-        appliedCaloriesDecrease = caloriesDecreaseExercise
+        appliedCaloriesDecrease = caloriesDecrease.Exercise
     elseif player:isAsleep() then
-        appliedCaloriesDecrease = calorieDecreaseSleeping
+        appliedCaloriesDecrease = caloriesDecrease.Sleeping
     end
 
     ---Recreated Vanilla Base Rate:
@@ -52,24 +61,24 @@ local function RCB_updateCalories(player)
         if player:isSprinting() then
             debugChecks.state = "sprinting"
             thermoModifier = 1
-            appliedCaloriesDecrease = (caloriesDecreaseExercise*2)
+            appliedCaloriesDecrease = caloriesDecrease.Sprinting
         elseif player:isRunning() then
             debugChecks.state = "running"
             thermoModifier = 1
-            appliedCaloriesDecrease = caloriesDecreaseExercise
+            appliedCaloriesDecrease = caloriesDecrease.Exercise
         else
             debugChecks.state = "moving"
-            appliedCaloriesDecrease = (caloriesDecreaseExercise/2)
+            appliedCaloriesDecrease = caloriesDecrease.Walking
         end
     elseif player:isAsleep() then
         debugChecks.state = "sleeping"
-        appliedCaloriesDecrease = calorieDecreaseSleeping
+        appliedCaloriesDecrease = caloriesDecrease.Sleeping
     elseif player:isSitOnGround() then
         debugChecks.state = "sitting"
-        appliedCaloriesDecrease = (calorieDecreaseNormal*0.66)
+        appliedCaloriesDecrease = caloriesDecrease.Sitting
     else
         debugChecks.state = "idle"
-        appliedCaloriesDecrease = calorieDecreaseNormal
+        appliedCaloriesDecrease = caloriesDecrease.Normal
     end
 
     ---Follow through with calculating base rate:
