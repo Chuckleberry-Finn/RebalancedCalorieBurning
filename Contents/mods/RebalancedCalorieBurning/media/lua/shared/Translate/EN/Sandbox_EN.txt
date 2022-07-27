@@ -1,3 +1,4 @@
 Sandbox_EN = {
+	Sandbox_RCB = "Rebalanced Calorie Burning"
 	Sandbox_RCBmultiplier = "Caloric Burn Rate Multiplier",
 	Sandbox_RCBmultiplier_tooltip = "Multiply this off the overall caloric burn rate.",
