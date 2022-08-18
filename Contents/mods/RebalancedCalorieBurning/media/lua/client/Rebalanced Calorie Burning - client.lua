@@ -90,7 +90,8 @@ local function RCB_updateCalories(player)
     end
 
     --inventory impact
-    local inventoryModifier = 1+(PZMath.clamp_01(player:getInventoryWeight() / player:getMaxWeight())*0.1)
+    local carryingRatio = math.max(0,player:getInventoryWeight()/player:getMaxWeight())
+    local inventoryModifier = 1+(carryingRatio*0.01)
     baseRate = baseRate / inventoryModifier
 
     ---Apply sandbox option
