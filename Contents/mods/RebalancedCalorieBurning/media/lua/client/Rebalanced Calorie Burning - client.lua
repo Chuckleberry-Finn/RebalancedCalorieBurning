@@ -95,8 +95,8 @@ local function RCB_updateCalories(player)
     baseRate = baseRate / inventoryModifier
 
     ---Apply sandbox option
-    if SandboxVars.RebalancedCalorieBurning.multiplier then
-        baseRate = baseRate * SandboxVars.RebalancedCalorieBurning.multiplier
+    if SandboxVars.RebalancedCalorieBurning.CalorieMultiplier then
+        baseRate = baseRate * SandboxVars.RebalancedCalorieBurning.CalorieMultiplier
     end
 
     ---Compensate for baseline caloric burn
