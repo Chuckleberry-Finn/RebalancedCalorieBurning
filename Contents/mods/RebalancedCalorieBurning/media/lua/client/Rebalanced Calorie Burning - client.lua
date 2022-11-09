@@ -6,13 +6,11 @@ caloriesDecrease.Exercise = 0.13
 caloriesDecrease.Sleeping = 0.003
 caloriesDecrease.Normal = 0.016
 ---additional rates
-caloriesDecrease.Sprinting = caloriesDecrease.Exercise*2
-caloriesDecrease.Walking = caloriesDecrease.Exercise/2
 caloriesDecrease.Sitting = caloriesDecrease.Normal*0.66
 
 
 ---used for debug checks that don't spam the log
-local debugChecks = {state = "", lastState = "", vanillaRateOffsetError = false}
+local debugChecks = {state = "", lastState = ""}
 
 
 ---@param player IsoPlayer|IsoGameCharacter
@@ -24,7 +22,13 @@ local function RCB_updateCalories(player)
 
     ---Recreating the Vanilla Function
     --base caloric burning rate
-    local baseRate = 1
+    local actionQueue = ISTimedActionQueue.getTimedActionQueue(player)
+    local currentAction = actionQueue.queue[1]
+    local baseRate = (currentAction and currentAction.caloriesModifier) or 1
+
+    if player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance()) then
+        baseRate = 8
+    end
 
     --thermoModifier
     local thermoModifier = 1
@@ -39,17 +43,24 @@ local function RCB_updateCalories(player)
 
     --weightModifier
     local weightModifier = (pNutrition:getWeight() / 80)
-
-    if player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance()) then
-        baseRate = 8
-    end
-
     local appliedCaloriesDecrease = caloriesDecrease.Normal
-    if player:isPlayerMoving() and player:isRunning() then
+
+    if player:isRunning() and player:isPlayerMoving() then
+        baseRate = 1.0
+        thermoModifier = 1
+        appliedCaloriesDecrease = caloriesDecrease.Exercise
+    elseif player:isSprinting() and player:isPlayerMoving() then
+        baseRate = 1.3
+        thermoModifier = 1
+        appliedCaloriesDecrease = caloriesDecrease.Exercise
+    elseif player:isPlayerMoving() then
+        baseRate = 0.6
         thermoModifier = 1
         appliedCaloriesDecrease = caloriesDecrease.Exercise
     elseif player:isAsleep() then
         appliedCaloriesDecrease = caloriesDecrease.Sleeping
+    else
+        appliedCaloriesDecrease = caloriesDecrease.Normal
     end
 
     ---Recreated Vanilla Base Rate:
@@ -60,59 +71,44 @@ local function RCB_updateCalories(player)
     if player:isPlayerMoving() then
         if player:isSprinting() then
             debugChecks.state = "sprinting"
-            thermoModifier = 1
-            appliedCaloriesDecrease = caloriesDecrease.Sprinting
         elseif player:isRunning() then
             debugChecks.state = "running"
-            thermoModifier = 1
-            appliedCaloriesDecrease = caloriesDecrease.Exercise
         else
             debugChecks.state = "moving"
-            appliedCaloriesDecrease = caloriesDecrease.Walking
         end
     elseif player:isAsleep() then
         debugChecks.state = "sleeping"
-        appliedCaloriesDecrease = caloriesDecrease.Sleeping
+
     elseif player:isSitOnGround() then
         debugChecks.state = "sitting"
         appliedCaloriesDecrease = caloriesDecrease.Sitting
     else
         debugChecks.state = "idle"
-        appliedCaloriesDecrease = caloriesDecrease.Normal
     end
 
-    ---Follow through with calculating base rate:
-    baseRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
-
-    if (not debugChecks.vanillaRateOffsetError) and (not player:isPlayerMoving()) and (baseRate~=vanillaBaseRate) then
-        debugChecks.vanillaRateOffsetError = true
-        print("ERROR: Rebalanced Calorie Burning: Vanilla-Base-Rate does not match expected rate. This is not a real error but needs to be reported. :)")
-    end
+    local rebalancedRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
 
     --inventory impact
     local carryingRatio = math.max(0,player:getInventoryWeight()/player:getMaxWeight())
     local inventoryModifier = 1+(carryingRatio*0.01)
-    baseRate = baseRate / inventoryModifier
+    rebalancedRate = rebalancedRate / inventoryModifier
+
 
     ---Apply sandbox option
-    if SandboxVars.RebalancedCalorieBurning.CalorieMultiplier then
-        baseRate = baseRate * SandboxVars.RebalancedCalorieBurning.CalorieMultiplier
-    end
+    if SandboxVars.RebalancedCalorieBurning.CalorieMultiplier then rebalancedRate = rebalancedRate * SandboxVars.RebalancedCalorieBurning.CalorieMultiplier end
 
     ---Compensate for baseline caloric burn
-    baseRate = (baseRate-vanillaBaseRate)
+    local burnRate = (rebalancedRate-vanillaBaseRate)
 
-    if baseRate ~= 0 then
-
+    if burnRate ~= 0 then
         if getDebug() and (debugChecks.state~=debugChecks.lastState ) then
-            print("Rebalanced Calorie Burning: ["..debugChecks.state.."]  added-burn:"..baseRate)
+            print("Rebalanced Calorie Burning: ["..debugChecks.state.."]  added-burn:"..burnRate)
             debugChecks.lastState = debugChecks.state
         end
-
-        pNutrition:setCalories(pNutrition:getCalories()-baseRate)
+        pNutrition:setCalories(pNutrition:getCalories()-burnRate)
     end
 
-    return baseRate
+    return burnRate
 end
 
 Events.OnPlayerUpdate.Add(RCB_updateCalories)
