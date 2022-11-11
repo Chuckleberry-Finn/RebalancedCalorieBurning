@@ -1,6 +1,6 @@
 ---values and methods taken from `zombie\characters\BodyDamage\Nutrition.java`
 
----Values from vanilla (41.73)
+---Values from vanilla (41.78)
 local caloriesDecrease = {}
 caloriesDecrease.Exercise = 0.13
 caloriesDecrease.Sleeping = 0.003
