@@ -101,7 +101,7 @@ local function RCB_updateCalories(player)
     local burnRate = (rebalancedRate-vanillaBaseRate)
 
     if burnRate ~= 0 then
-        if getDebug() and (debugChecks.state~=debugChecks.lastState ) then
+        if getDebug() and (debugChecks.state~=debugChecks.lastState ) and player==getSpecificPlayer(0) then
             print("Rebalanced Calorie Burning: ["..debugChecks.state.."]  added-burn:"..burnRate)
             debugChecks.lastState = debugChecks.state
         end
