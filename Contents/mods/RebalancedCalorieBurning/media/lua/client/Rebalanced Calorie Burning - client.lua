@@ -6,7 +6,7 @@ caloriesDecrease.Exercise = 0.13
 caloriesDecrease.Sleeping = 0.003
 caloriesDecrease.Normal = 0.016
 ---additional rates
-caloriesDecrease.Sitting = caloriesDecrease.Normal*0.66
+caloriesDecrease.Sitting = 0.010 --(Normal * 0.66)
 
 
 ---used for debug checks that don't spam the log
