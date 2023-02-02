@@ -71,19 +71,27 @@ local function RCB_updateCalories(player)
     if player:isPlayerMoving() then
         if player:isSprinting() then
             debugChecks.state = "sprinting"
+            baseRate = (SandboxVars.RebalancedCalorieBurning.SprintingMultiplier or 1) * 1.3
+
         elseif player:isRunning() then
             debugChecks.state = "running"
+            baseRate = SandboxVars.RebalancedCalorieBurning.RunningMultiplier or 1
         else
             debugChecks.state = "moving"
+            baseRate = (SandboxVars.RebalancedCalorieBurning.WalkingMultiplier or 1) * 0.6
         end
+
     elseif player:isAsleep() then
         debugChecks.state = "sleeping"
+        baseRate = SandboxVars.RebalancedCalorieBurning.AsleepMultiplier or 1
 
     elseif player:isSitOnGround() then
         debugChecks.state = "sitting"
+        baseRate = SandboxVars.RebalancedCalorieBurning.SittingMultiplier or 1
         appliedCaloriesDecrease = caloriesDecrease.Sitting
     else
         debugChecks.state = "idle"
+        baseRate = SandboxVars.RebalancedCalorieBurning.IdleMultiplier or 1
     end
 
     local rebalancedRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
