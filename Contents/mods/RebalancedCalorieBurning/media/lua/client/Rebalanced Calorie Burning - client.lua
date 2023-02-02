@@ -91,7 +91,7 @@ local function RCB_updateCalories(player)
     --inventory impact
     local carryingRatio = math.max(0,player:getInventoryWeight()/player:getMaxWeight())
     local inventoryModifier = 1+(carryingRatio*0.01)
-    rebalancedRate = rebalancedRate / inventoryModifier
+    rebalancedRate = rebalancedRate * inventoryModifier
 
 
     ---Apply sandbox option
