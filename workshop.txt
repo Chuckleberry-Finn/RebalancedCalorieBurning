@@ -3,14 +3,15 @@ id=2840487215
 title=Rebalanced Calorie Burning
 description=[h3][b]Add more calorie burning conditional on players' actions.[/b][/h3]
 description=
+description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/patreon.png[/img][/url]
+description=
 description=This mod adds ONTO the base game's calorie burning.
 description=- Carrying items burns more calories.
 description=- Sitting down burns less than standing still.
 description=
 description=This mod also adds several sandbox options that allows you to tweak any state's caloric burn.
 description=
-description=[img]https://i.imgur.com/p7Fv1Z6.gif[/img]
 description=
-description=[url=https://ko-fi.com/chuckleberryfinn][img]https://i.imgur.com/GxZ38nz.png[/img] [b]Consider supporting Chuck![/b][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/Vanilla-Weapons-Expanded/main/Contents/mods/VanillaWeaponsExpanded/patreon/Patreon%20Logo.png[/img][/url]
+description=[h3]Copyright 2023 Chuckleberry Finn. This item is not authorized for posting on Steam, except under the Steam account named Chuckleberry Finn.[/h3]
 tags=Build 41;Balance;Realistic
 visibility=public
