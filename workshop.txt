@@ -3,7 +3,7 @@ id=2840487215
 title=Rebalanced Calorie Burning
 description=[h3][b]Add more calorie burning conditional on players' actions.[/b][/h3]
 description=
-description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/patreon.png[/img][/url]
+description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url]
 description=
 description=This mod adds ONTO the base game's calorie burning.
 description=- Carrying items burns more calories.
