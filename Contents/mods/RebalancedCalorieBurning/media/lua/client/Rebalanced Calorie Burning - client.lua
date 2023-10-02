@@ -103,8 +103,8 @@ local function RCB_updateCalories(player)
     local rebalancedRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
 
     --inventory impact
-    local carryingRatio = math.max(0,player:getInventoryWeight()/player:getMaxWeight())
-    local inventoryModifier = 1+(carryingRatio*0.01)
+    local carryingRatio = player:getInventoryWeight()/player:getMaxWeight()
+    local inventoryModifier = 1+(carryingRatio*0.1 *SandboxVars.RebalancedCalorieBurning.CarryMultiplier)
     rebalancedRate = rebalancedRate * inventoryModifier
 
 

@@ -23,3 +23,6 @@ option RebalancedCalorieBurning.SittingMultiplier
 
 option RebalancedCalorieBurning.TimedActionMultiplier
 {type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = TimedActionMultiplier}
+
+option RebalancedCalorieBurning.CarryMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = CarryMultiplier}

@@ -6,6 +6,7 @@ Sandbox_EN = {
 	Sandbox_CalorieMultiplier_tooltip = "This value is multiplied to the overall caloric burn rate.\nWarning: This stacks with the more specific multipliers.",
 
     Sandbox_TimedActionMultiplier = "Timed Action Multiplier",
+    Sandbox_CarryMultiplier = "Encumbrance Multiplier",
 	Sandbox_IdleMultiplier = "Idle Multiplier",
 	Sandbox_WalkingMultiplier = "Walking Multiplier",
 	Sandbox_RunningMultiplier = "Running Multiplier",
