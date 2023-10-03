@@ -25,8 +25,8 @@ local function RCB_updateCalories(player)
     local actionQueue = ISTimedActionQueue.getTimedActionQueue(player)
     local currentAction = actionQueue.queue[1]
     local baseRate = (currentAction and currentAction.caloriesModifier) or 1
-
-    if player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance()) then
+    local laborousState = player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance())
+    if laborousState then
         baseRate = 8
     end
 
@@ -68,7 +68,13 @@ local function RCB_updateCalories(player)
     local vanillaBaseRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
 
     --Apply our own decrease rates
-    if player:isPlayerMoving() then
+    if currentAction and currentAction.caloriesModifier then
+        debugChecks.state = "timed action"
+        baseRate = currentAction.caloriesModifier * (SandboxVars.RebalancedCalorieBurning.TimedActionMultiplier or 1)
+    elseif laborousState then
+        debugChecks.state = "climbing"
+        baseRate = 8 * (SandboxVars.RebalancedCalorieBurning.TimedActionMultiplier or 1)
+    elseif player:isPlayerMoving() then
         if player:isSprinting() then
             debugChecks.state = "sprinting"
             baseRate = (SandboxVars.RebalancedCalorieBurning.SprintingMultiplier or 1) * 1.3
@@ -97,8 +103,8 @@ local function RCB_updateCalories(player)
     local rebalancedRate = baseRate * appliedCaloriesDecrease * weightModifier * thermoModifier * getGameTime():getGameWorldSecondsSinceLastUpdate()
 
     --inventory impact
-    local carryingRatio = math.max(0,player:getInventoryWeight()/player:getMaxWeight())
-    local inventoryModifier = 1+(carryingRatio*0.01)
+    local carryingRatio = player:getInventoryWeight()/player:getMaxWeight()
+    local inventoryModifier = 1+(carryingRatio*0.1 *SandboxVars.RebalancedCalorieBurning.CarryMultiplier)
     rebalancedRate = rebalancedRate * inventoryModifier
 
 
