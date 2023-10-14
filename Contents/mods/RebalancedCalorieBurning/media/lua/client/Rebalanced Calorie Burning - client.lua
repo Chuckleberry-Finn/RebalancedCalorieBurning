@@ -25,8 +25,8 @@ local function RCB_updateCalories(player)
     local actionQueue = ISTimedActionQueue.getTimedActionQueue(player)
     local currentAction = actionQueue.queue[1]
     local baseRate = (currentAction and currentAction.caloriesModifier) or 1
-    local laborousState = player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance())
-    if laborousState then
+    local laboriousState = player:isCurrentState(SwipeStatePlayer.instance()) or player:isCurrentState(ClimbOverFenceState.instance()) or player:isCurrentState(ClimbThroughWindowState.instance())
+    if laboriousState then
         baseRate = 8
     end
 
@@ -71,7 +71,7 @@ local function RCB_updateCalories(player)
     if currentAction and currentAction.caloriesModifier then
         debugChecks.state = "timed action"
         baseRate = currentAction.caloriesModifier * (SandboxVars.RebalancedCalorieBurning.TimedActionMultiplier or 1)
-    elseif laborousState then
+    elseif laboriousState then
         debugChecks.state = "climbing"
         baseRate = 8 * (SandboxVars.RebalancedCalorieBurning.TimedActionMultiplier or 1)
     elseif player:isPlayerMoving() then
