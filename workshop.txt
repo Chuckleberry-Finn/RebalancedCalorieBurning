@@ -2,8 +2,7 @@ version=1
 id=2840487215
 title=Rebalanced Calorie Burning
 description=[h3][b]Add more calorie burning conditional on players' actions.[/b][/h3]
-description=[b]Additional code/contribution by Diakon5[/b]
-description=[b]B42 Conversion by [url=https://steamcommunity.com/profiles/76561199004840650]少爷该起床捡垃圾了[/url][/b]
+description=Additional code/contribution by Diakon5
 description=
 description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url][url=https://discord.gg/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner3.png[/img][/url]
 description=
@@ -22,5 +21,5 @@ description=
 description=
 description=
 description=[h3]Copyright 2023 Chuckleberry Finn. This item is not authorized for posting on Steam, except under the Steam account named Chuckleberry Finn.[/h3]
-tags=Build 41;Balance;Realistic
+tags=Build 41;Build 42;Balance;Realistic
 visibility=public
