@@ -1,0 +1,16 @@
+Sandbox_EN = {
+
+	Sandbox_Calorie = "Calorie Burning",
+
+	Sandbox_CalorieMultiplier = "Caloric Burn Rate Multiplier",
+	Sandbox_CalorieMultiplier_tooltip = "This value is multiplied to the overall caloric burn rate.\nWarning: This stacks with the more specific multipliers.",
+
+    Sandbox_TimedActionMultiplier = "Timed Action Multiplier",
+    Sandbox_CarryMultiplier = "Encumbrance Multiplier",
+	Sandbox_IdleMultiplier = "Idle Multiplier",
+	Sandbox_WalkingMultiplier = "Walking Multiplier",
+	Sandbox_RunningMultiplier = "Running Multiplier",
+	Sandbox_SprintingMultiplier = "Sprinting Multiplier",
+	Sandbox_AsleepMultiplier = "Asleep Multiplier",
+	Sandbox_SittingMultiplier = "Sitting Multiplier",
+}

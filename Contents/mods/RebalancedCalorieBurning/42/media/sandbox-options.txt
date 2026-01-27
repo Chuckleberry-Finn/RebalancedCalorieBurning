@@ -1,0 +1,28 @@
+VERSION = 1,
+
+option RebalancedCalorieBurning.CalorieMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = CalorieMultiplier}
+
+option RebalancedCalorieBurning.IdleMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = IdleMultiplier}
+
+option RebalancedCalorieBurning.WalkingMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = WalkingMultiplier}
+
+option RebalancedCalorieBurning.RunningMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = RunningMultiplier}
+
+option RebalancedCalorieBurning.SprintingMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = SprintingMultiplier}
+
+option RebalancedCalorieBurning.AsleepMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = AsleepMultiplier}
+
+option RebalancedCalorieBurning.SittingMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = SittingMultiplier}
+
+option RebalancedCalorieBurning.TimedActionMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = TimedActionMultiplier}
+
+option RebalancedCalorieBurning.CarryMultiplier
+{type = double, min = 0.00, max = 100, default = 1, page = Calorie, translation = CarryMultiplier}
