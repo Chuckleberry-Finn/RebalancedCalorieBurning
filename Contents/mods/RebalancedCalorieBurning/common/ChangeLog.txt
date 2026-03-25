@@ -3,3 +3,7 @@ link1 = Chuck's Kofi = https://steamcommunity.com/linkfilter/?u=https://ko-fi.co
 link3 = Workshop = https://steamcommunity.com/id/Chuckleberry_Finn/myworkshopfiles/?appid=108600,
 link4 = Github = https://steamcommunity.com/linkfilter/?u=https://github.com/Chuckleberry-Finn,
 [ ------ ]
+
+[ 3/4/26 ]
+Moved code to shared rather than client. (Credit: Mutie and his awesome community!)
+[ ------ ]
