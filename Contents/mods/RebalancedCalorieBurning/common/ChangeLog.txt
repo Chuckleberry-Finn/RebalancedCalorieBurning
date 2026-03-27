@@ -7,3 +7,7 @@ link4 = Github = https://steamcommunity.com/linkfilter/?u=https://github.com/Chu
 [ 3/4/26 ]
 Moved code to shared rather than client. (Credit: Mutie and his awesome community!)
 [ ------ ]
+
+[ 3/27/26 ]
+- B42.15 Json Translations.
+[ ------ ]
